@@ -276,46 +276,47 @@ void transporteAG(strnodo nodos[],double costoTransp[][D]){
     int cont=0, mejorAnterior=-1, mejor, genSinMejora=0;
     generapoblacioninicial(poblacion);
     while(1){
+        cout<<"Generacion: "<<cont+1<<endl;
         vector<vector<int>> padres;
         cout<<"Poblacion inicial: "<<endl;
-        cout<<padres.size()<<endl;
-        cout<<poblacion.size()<<endl;
+        cout<<"Tamaño de la poblacion: "<<poblacion.size()<<endl;
         muestrapoblacion(poblacion,nodos,costoTransp);
         imprimelinea();
         
         seleccion(poblacion,padres,nodos,costoTransp);
         cout<<"Fase de seleccion:"<<endl;
-        cout<<padres.size()<<endl;
-        cout<<poblacion.size()<<endl;
+        cout<<"Cantidad de padres seleccionados: "<<padres.size()<<endl;
         cout<<"Padres:"<<endl;
         muestrapoblacion(padres,nodos,costoTransp);
+        cout<<"Tamaño de la poblacion: "<<poblacion.size()<<endl;
         cout<<"Poblacion:"<<endl;
         muestrapoblacion(poblacion,nodos,costoTransp);
         imprimelinea();
         
         casamiento(poblacion,padres);
-        cout <<"Casamiento:"<<endl;
-        cout<<poblacion.size()<<endl;
+        cout<<"Casamiento:"<<endl;
+        cout<<"Tamaño de la poblacion: "<<poblacion.size()<<endl;
         cout<<"Poblacion:"<<endl;
         muestrapoblacion(poblacion,nodos,costoTransp);
         imprimelinea();
         
         mutacion(poblacion,padres);
-        cout <<"Mutacion:"<<endl;
-        cout<<poblacion.size()<<endl;
+        cout<<"Mutacion:"<<endl;
+        cout<<"Tamaño de la poblacion: "<<poblacion.size()<<endl;
         cout<<"Poblacion:"<<endl;
         muestrapoblacion(poblacion,nodos,costoTransp);
         imprimelinea();
         
         eliminaberraciones(poblacion);
         eliminaclones(poblacion);
-        cout <<endl<<"Luego de control de aberraciones:"<<endl;
-        cout<<poblacion.size()<<endl;
+        cout<<"Luego de control de aberraciones:"<<endl;
+        cout<<"Tamaño de la poblacion: "<<poblacion.size()<<endl;
         cout<<"Poblacion:"<<endl;
         muestrapoblacion(poblacion,nodos,costoTransp);
         imprimelinea();
         
         mejor=muestramejor(poblacion,nodos,costoTransp);
+        imprimelinea();
         if(mejor==mejorAnterior)
             genSinMejora++;
         else{
@@ -323,9 +324,9 @@ void transporteAG(strnodo nodos[],double costoTransp[][D]){
             genSinMejora=0;
         }   
         cont++;
-        if(cont==100||genSinMejora==3) break;    
-        
-    }    
+        if(cont==100||genSinMejora==3) break;
+    }
+    cout<<"Generación final: "<<cont+1<<endl;
 }
 
 int main(int argc, char** argv) {
@@ -345,3 +346,4 @@ int main(int argc, char** argv) {
     transporteAG(nodos, costoTransp);
     return 0;
 }
+
