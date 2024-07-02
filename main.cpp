@@ -1,4 +1,3 @@
-
 /* 
  * File:   main.cpp
  * Author: Grupo 6
@@ -11,19 +10,18 @@
 #include <vector>
 #include <cmath>
 #define Tcasamiento 0.5
-#define Pcasamiento 0.5 
+#define Pcasamiento 0.5
 #define Ttorneo 0.3
 #define Tmutacion 0.2
 #define IND 5
 #define O 3
 #define D 4
-#define K 7
 using namespace std;
 
 struct strnodo{
     int idNodo;
-    int demanda;//cantidad de bienes necesaria del nodo
-    int inventario;//inventario actual del nodo
+    int demanda;
+    int inventario;
 };
 
 int obtenerMenorCosto(double costoTransp[][D], int indDestino, vector<strnodo> 
@@ -47,14 +45,15 @@ int obtenerNodoPrio(vector<int> cromo, int prio){
 int calculafitness(vector<int> cromo,strnodo nodos[],double costoTransp[][D]){
     int indDestino, indOrigen, demanda, inventario, costo=0;
     vector<strnodo> nodosCopia;
-    for(int i=0;i<K;i++){
+    for(int i=0;i<O+D;i++){
         nodosCopia.push_back(nodos[i]);
     }
     for(int i=D;i>0;i--){
         indDestino=obtenerNodoPrio(cromo,i)+O;
         while(nodosCopia[indDestino].demanda){
             indOrigen=obtenerMenorCosto(costoTransp, indDestino,nodosCopia);
-            if(nodosCopia[indOrigen].inventario>=nodosCopia[indDestino].demanda){
+            if(nodosCopia[indOrigen].inventario>=
+                    nodosCopia[indDestino].demanda){
                 costo+=costoTransp[indOrigen][indDestino-O]*
                         nodosCopia[indDestino].demanda;
                 nodosCopia[indOrigen].inventario-=
@@ -330,7 +329,7 @@ void transporteAG(strnodo nodos[],double costoTransp[][D]){
 }
 
 int main(int argc, char** argv) {
-    strnodo nodos[K]={{1,0,550},
+    strnodo nodos[O+D]={{1,0,550},
                       {2,0,300},
                       {3,0,450},
                       {4,300,0},
@@ -346,4 +345,3 @@ int main(int argc, char** argv) {
     transporteAG(nodos, costoTransp);
     return 0;
 }
-
