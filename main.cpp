@@ -11,7 +11,7 @@
 #include <vector>
 #include <cmath>
 #define Tcasamiento 0.5
-#define Pcasamiento 0.5
+#define Pcasamiento 0.5 
 #define Ttorneo 0.3
 #define Tmutacion 0.2
 #define IND 5
