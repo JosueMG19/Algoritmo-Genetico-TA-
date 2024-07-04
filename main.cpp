@@ -126,17 +126,6 @@ int seleccionPorTorneo(vector<vector<int>> poblacion,strnodo nodos[],
     return indMejor;
 }
 
-//bool clones(vector<int>&cromo1, vector<int> &cromo2){
-//    bool bandera=1;
-//    for(int i=0;i<cromo1.size();i++){
-//        if(cromo1[i]!=cromo2[i]){
-//            bandera=0;
-//             break;
-//        } 
-//    }
-//    return bandera;
-//}
-
 void seleccion(vector<vector<int>> poblacion, vector<vector<int>> &padres,
         strnodo nodos[], double costoTransp[][D]){
     int npadres, indMejor, cont=0;
@@ -144,21 +133,10 @@ void seleccion(vector<vector<int>> poblacion, vector<vector<int>> &padres,
     npadres=round(poblacion.size()*Tcasamiento);
     while(1){
         indMejor=seleccionPorTorneo(poblacion, nodos, costoTransp);
-//        bandera=false;
-//        for(int i=0;i<padres.size();i++){
-//            if(clones(padres[i],poblacion[indMejor])){
-//                bandera=true;
-//                break;
-//            }
-//        }
-//        if(!bandera){
-            padres.push_back(poblacion[indMejor]);
-            cont++;
-//        }  
+        padres.push_back(poblacion[indMejor]);
+        cont++;
         if(cont>=npadres)break;
     }
-    
-//    muestrapoblacion(padres,paq);
 }
 void generahijo(vector<int>padre,vector<int>madre,vector<int>&hijo){
     int pos=round(padre.size()*Pcasamiento);
@@ -337,9 +315,6 @@ int main(int argc, char** argv) {
                       {5,350,0},
                       {6,300,0},
                       {7,350,0}};
-//    int idNodo;
-//    int demanda;
-//    int inventario;
     double costoTransp[O][D]={{11,14,17,13},
                               {16,19,18,15},
                               {15,16,19,18}};
